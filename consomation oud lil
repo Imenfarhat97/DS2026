@@ -1,11 +1,97 @@
+
 <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consommation STEG - Denden</title>
 
-<html lang="fr"> <head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f8;
+            margin: 40px;
+            text-align: center;
+        }
 
-<meta charset="UTF-8">
+        h1 {
+            color: #663399;
+        }
 
-<title>oud lil </title>
+        p {
+            font-size: 18px;
+        }
 
-</head> <body> <p>la consommation de oued ililr</p>
+        table {
+            width: 80%;
+            margin: 25px auto;
+            border-collapse: collapse;
+            background-color: white;
+        }
 
-</body> </html>
+        th, td {
+            border: 1px solid #999;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #663399;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #eee8f5;
+        }
+
+        .total {
+            font-weight: bold;
+            background-color: #d8c8ee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Consommation d'électricité</h1>
+    <p>Consommation STEG - Denden / Oued Ellil</p>
+
+    <table>
+        <tr>
+            <th>Maisons / Société</th>
+            <th>Consommation Juillet</th>
+            <th>Consommation Août</th>
+        </tr>
+
+        <tr><td>Maison 1</td><td>150</td><td>150</td></tr>
+        <tr><td>Maison 2</td><td>100</td><td>100</td></tr>
+        <tr><td>Maison 3</td><td>100</td><td>100</td></tr>
+        <tr><td>Maison 4</td><td>100</td><td>100</td></tr>
+        <tr><td>Maison 5</td><td>150</td><td>150</td></tr>
+        <tr><td>Maison 6</td><td>100</td><td>100</td></tr>
+        <tr><td>Maison 7</td><td>100</td><td>100</td></tr>
+        <tr><td>Maison 8</td><td>100</td><td>100</td></tr>
+        <tr><td>Maison 9</td><td>100</td><td>0</td></tr>
+        <tr><td>Maison 10</td><td>150</td><td>150</td></tr>
+
+        <tr>
+            <td>Office National de l'artisanat</td>
+            <td>950</td>
+            <td>950</td>
+        </tr>
+
+        <tr class="total">
+            <td>Total</td>
+            <td>2000</td>
+            <td>1900</td>
+        </tr>
+
+        <tr class="total">
+            <td>Compteur Denden</td>
+            <td>2000</td>
+            <td>2000</td>
+        </tr>
+    </table>
+
+</body>
+</html>
