@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détection des fraudes électriques</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2eef8;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: purple;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 12px;
+        }
+
+        th {
+            background: #663399;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #eee8f5;
+        }
+
+        .alerte {
+            color: #b42318;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: purple;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #resultat {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Détection des anomalies électriques</h1>
+<p>Contrôle de la consommation STEG - Denden</p>
+
+<table>
+    <tr>
+        <th>Maison / Société</th>
+        <th>Juillet</th>
+        <th>Août</th>
+    </tr>
+
+    <tr><td>Maison 1</td><td>150</td><td>150</td></tr>
+    <tr><td>Maison 2</td><td>100</td><td>100</td></tr>
+    <tr><td>Maison 3</td><td>100</td><td>100</td></tr>
+    <tr><td>Maison 4</td><td>100</td><td>100</td></tr>
+    <tr><td>Maison 5</td><td>150</td><td>150</td></tr>
+    <tr><td>Maison 6</td><td>100</td><td>100</td></tr>
+    <tr><td>Maison 7</td><td>100</td><td>100</td></tr>
+    <tr><td>Maison 8</td><td>100</td><td>100</td></tr>
+    <tr><td>Maison 9</td><td>100</td><td>0</td></tr>
+    <tr><td>Maison 10</td><td>150</td><td>150</td></tr>
+    <tr><td>Office National de l'artisanat</td><td>950</td><td>950</td></tr>
+</table>
+
+<button onclick="detecterFraude()">
+    Détecter les anomalies
+</button>
+
+<div id="resultat">
+    Clique sur le bouton pour lancer l'analyse.
+</div>
+
+<script>
+function detecterFraude() {
+
+    let lignes = document.querySelectorAll("table tr");
+    let totalJuillet = 0;
+    let totalAout = 0;
+    let anomalies = [];
+
+    for (let i = 1; i < lignes.length; i++) {
+
+        let cellules = lignes[i].querySelectorAll("td");
+
+        let nom = cellules[0].textContent;
+        let juillet = Number(cellules[1].textContent);
+        let aout = Number(cellules[2].textContent);
+
+        totalJuillet += juillet;
+        totalAout += aout;
+
+        if (juillet > 0 && aout === 0) {
+            anomalies.push(
+                nom + " : consommation nulle en août."
+            );
+        }
+    }
+
+    let compteurAout = 2000;
+    let ecart = compteurAout - totalAout;
+
+    let message = "<h2>Résultats de l'analyse</h2>";
+
+    message += "<p>Total juillet : " + totalJuillet + "</p>";
+    message += "<p>Total août : " + totalAout + "</p>";
+
+    if (ecart !== 0) {
+        message +=
+            "<p class='alerte'>Écart compteur / total : "
+            + ecart + "</p>";
+        anomalies.push(
+            "Vérifier la différence entre le compteur principal et les consommations individuelles."
+        );
+    }
+
+    if (anomalies.length > 0) {
+        message += "<h3>Alertes à vérifier</h3><ul>";
+
+        anomalies.forEach(function(anomalie) {
+            message += "<li class='alerte'>"
+                + anomalie + "</li>";
+        });
+
+        message += "</ul>";
+        message += "<p>Ces alertes ne prouvent pas une fraude.</p>";
+    } else {
+        message += "<p>Aucune anomalie détectée.</p>";
+    }
+
+    document.getElementById("resultat").innerHTML = message;
+}
+</script>
+
+</body>
+</html>
